@@ -70,6 +70,10 @@ enum Result[A]:
     this match
       case Success(_) => true
       case _          => false
+  def isFailure =
+    this match
+      case Failure(_) => true
+      case _          => false
 
 val validChar = (('a' to 'z') concat ('A' to 'Z') concat ('0' to '9')).toSet
 

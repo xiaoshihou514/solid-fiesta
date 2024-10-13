@@ -79,6 +79,12 @@ class AnswerSpec extends UnitSpec {
     assert(parse_to_tree(tree_to_string(t4)).get == t4)
   }
 
+  "parse_to_tree" should "give failure with reason when input is not valid" in {
+    assert(parse_to_tree("(a b )").isFailure)
+    assert(parse_to_tree("(a b**&& cc)").isFailure)
+    assert(parse_to_tree("(a (d e cc)").isFailure)
+  }
+
   "replace" should "replace all occurances in a tree" in {
     assert(tree_to_string(replace(t1, t1, "asdf")) == "asdf")
     // original unchanged
